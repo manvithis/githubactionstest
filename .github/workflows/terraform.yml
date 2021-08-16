@@ -44,7 +44,7 @@ jobs:
       working-directory: .
     
     - name: "Save Plan JSON"
-      run: echo '${{ steps.show.outputs.stdout }}' > ./plan.json
+      run: echo '${{ steps.show.outputs.stdout }}' > plan.json
    
     - name: Run infracost diff
       uses: infracost/infracost-gh-action@master # Use a specific version instead of master if locking is preferred
@@ -52,4 +52,4 @@ jobs:
         INFRACOST_API_KEY: 6DYQEmvFIwj0BSYhyIS9LW2RusMHhR03
         GITHUB_TOKEN: ${{ secrets.GT }}
       with:
-        path: ./plan.json
+        path: plan.json
