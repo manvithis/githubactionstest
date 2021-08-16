@@ -42,8 +42,11 @@ jobs:
       id: show
       run: terraform show -json plan.tfplan
       working-directory: .
-
-    - name: Run infracost diff
+    
+    - name: "Save Plan JSON"
+      run: echo '${{ steps.show.outputs.stdout }}' > plan.json
+   
+   - name: Run infracost diff
       uses: infracost/infracost-gh-action@master # Use a specific version instead of master if locking is preferred
       env:
         INFRACOST_API_KEY: 6DYQEmvFIwj0BSYhyIS9LW2RusMHhR03
