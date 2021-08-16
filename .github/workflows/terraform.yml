@@ -33,14 +33,9 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
-      continue-on-error: true
-
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color
+      run: terraform plan -var-file="terrafrom.tfvars" -no-color
       continue-on-error: true
 
     - name: "Run - Terraform Comment"
@@ -48,7 +43,7 @@ jobs:
       env:
         STDOUT: "```${{ steps.plan.outputs.stdout }}```"
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GT }}
         script: |
           github.issues.createComment({
             issue_number: context.issue.number,
