@@ -35,12 +35,12 @@ jobs:
 
     - name: "Terraform plan"
       id: plan
-      run: terraform plan -out plan.tfplan
+      run: terraform plan -var-file="terrafrom.tfvars" -out plan.tfplan
       working-directory: .
 
     - name: "Terraform show"
       id: show
-      run: terraform show -json plan.tfplan
+      run: terraform show -var-file="terrafrom.tfvars" -json plan.tfplan
       working-directory: .
 
     - name: Run infracost diff
