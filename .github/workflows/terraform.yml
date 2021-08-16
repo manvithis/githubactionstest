@@ -53,7 +53,7 @@ jobs:
         init_err: ${{ steps.init.outputs.stderr }}
         validate_out: ${{ steps.validate.outputs.stdout }}
         validate_err: ${{ steps.validate.outputs.stderr }}
-        plan: "${{ steps.plan.outputs.stdout }}"
+        plan:  "```${{ steps.plan.outputs.stdout }}```"
       with:
         github-token: ${{ secrets.GT }}
         script: |
