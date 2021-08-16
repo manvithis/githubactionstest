@@ -40,7 +40,7 @@ jobs:
 
     - name: "Terraform show"
       id: show
-      run: terraform show -var-file="terrafrom.tfvars" -json plan.tfplan
+      run: terraform show -json plan.tfplan
       working-directory: .
 
     - name: Run infracost diff
