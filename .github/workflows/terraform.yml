@@ -45,7 +45,10 @@ jobs:
     
     - name: "Save Plan JSON"
       run: echo '${{ steps.show.outputs.stdout }}' > plan.json
-   
+    
+    - name: "cat plan JSON"
+      run: cat plan.json
+    
     - name: Run infracost diff
       uses: infracost/infracost-gh-action@master # Use a specific version instead of master if locking is preferred
       env:
