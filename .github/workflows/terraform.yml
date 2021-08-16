@@ -46,7 +46,7 @@ jobs:
     - name: Run infracost diff
       uses: infracost/infracost-gh-action@master # Use a specific version instead of master if locking is preferred
       env:
-        INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        INFRACOST_API_KEY: 6DYQEmvFIwj0BSYhyIS9LW2RusMHhR03
+        GITHUB_TOKEN: ${{ secrets.GT }}
       with:
         path: plan.json
