@@ -58,5 +58,5 @@ jobs:
         INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
         GITHUB_TOKEN: ${{ secrets.GT }}
       with:
-        path: .
+        path: output/
         usage_file: results.json
