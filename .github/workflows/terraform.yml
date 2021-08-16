@@ -33,11 +33,20 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
-    # Generates an execution plan for Terraform
-    - name: 'Terraform Plan'
-      uses: hashicorp/terraform-github-actions@master
+    - name: "Terraform plan"
+      id: plan
+      run: terraform plan -out plan.tfplan
+      working-directory: .
+
+    - name: "Terraform show"
+      id: show
+      run: terraform show -json plan.tfplan
+      working-directory: .
+
+    - name: Run infracost diff
+      uses: infracost/infracost-gh-action@master # Use a specific version instead of master if locking is preferred
+      env:
+        INFRACOST_API_KEY: ${{ secrets.INFRACOST_API_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tf_actions_version: 0.14.9
-        tf_actions_subcommand: 'plan'
-        tf_actions_working_dir: '.'
-        tf_actions_comment: true
+        path: plan.json
